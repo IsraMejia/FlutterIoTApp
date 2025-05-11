@@ -30,7 +30,7 @@ class _IotHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -40,7 +40,7 @@ class _IotHomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'IoT',
+                'Domótica',
                 style: GoogleFonts.roboto(
                   color: Colors.white,
                   fontSize: 32,

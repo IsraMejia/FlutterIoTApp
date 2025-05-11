@@ -24,7 +24,7 @@ class IotButtonNavigationBar extends ConsumerWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home_outlined ),
-          label: 'Inicio',
+          label: 'IoT',
         ),
       ],
     );
