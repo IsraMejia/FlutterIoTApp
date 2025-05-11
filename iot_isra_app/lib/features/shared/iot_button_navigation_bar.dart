@@ -11,8 +11,8 @@ class IotButtonNavigationBar extends ConsumerWidget {
     final currentIndex = ref.watch(currentIndexProvider);
 
     return BottomNavigationBar(
-      backgroundColor: Colors.black,
-      selectedItemColor: Colors.cyanAccent,
+      backgroundColor: const Color.fromARGB(255, 1, 1, 5),
+      selectedItemColor: const Color.fromARGB(255, 86, 194, 127),
       unselectedItemColor: Colors.white54,
       type: BottomNavigationBarType.fixed,
       currentIndex: currentIndex,
