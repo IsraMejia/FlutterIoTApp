@@ -54,25 +54,27 @@ class _IotHomeScreen extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  children: const [
-
+                 children: const [
                     IotDeviceCard(
-                      icon: Icons.air_rounded ,  
+                      icon: Icons.air_rounded,
                       label: 'Ventilador',
+                      nombre: 'Ventilador',
                     ),
-
-                    TemperaturaCard(),
-                    
                     IotDeviceCard(
-                      icon: Icons.local_drink,  
+                      icon: Icons.door_back_door_sharp,
+                      label: 'Puerta',
+                      nombre: 'Puerta',
+                    ),
+                    IotDeviceCard(
+                      icon: Icons.local_drink,
                       label: 'Servir Agua',
+                      nombre: 'Servir_Agua',
                     ),
-
                     IotDeviceCard(
-                      icon: Icons.sanitizer,  
+                      icon: Icons.sanitizer,
                       label: 'Atomizador',
+                      nombre: 'Atomizador',
                     ),
-
                   ],
                 ),
               ),
