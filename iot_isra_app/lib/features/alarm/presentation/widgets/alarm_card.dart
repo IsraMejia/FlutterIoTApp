@@ -25,7 +25,7 @@ class AlarmCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            timeLabel,
+            timeLabel.substring(0, 5),
             style: const TextStyle(
               fontSize: 28,
               color: Colors.white,

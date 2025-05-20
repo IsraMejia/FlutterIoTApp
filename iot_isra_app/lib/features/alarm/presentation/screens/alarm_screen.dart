@@ -6,6 +6,8 @@ import 'package:iot_isra_app/features/alarm/presentation/widgets/alarm_card.dart
 import 'package:iot_isra_app/features/alarm/presentation/widgets/alert_dialog_set_alarm.dart';
 import 'package:iot_isra_app/features/alarm/presentation/widgets/new_alarm.dart';
 import 'package:iot_isra_app/features/alarm/presentation/widgets/start_sleep_button.dart';
+import 'package:iot_isra_app/utils/logger.dart';
+
 
 class AlarmScreen extends ConsumerWidget {
   const AlarmScreen({super.key});
@@ -22,7 +24,6 @@ class AlarmScreen extends ConsumerWidget {
             backgroundColor: Colors.black,
             body: Column(
               children: [
-                
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Row(
@@ -40,7 +41,6 @@ class AlarmScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
-                
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -48,14 +48,16 @@ class AlarmScreen extends ConsumerWidget {
                       children: [
                         for (int i = 0; i < alarmList.length; i++)
                           AlarmCard(
-                            timeLabel: alarmList[i].timeLabel,
-                            isActive: alarmList[i].isActive,
+                            timeLabel: alarmList[i].hora,
+                            isActive: alarmList[i].activa,
                             onToggle: () {
-                              //Se cambia el estado si esta activada o desactivada la alarma
+                              logger.d("Desactivando/Activando Alarma");
                               ref.read(alarmListProvider.notifier).toggleAlarm(
                                     i,
-                                    !alarmList[i].isActive,
+                                    !alarmList[i].activa,
                                   );
+                              logger.d("Desactivando/Activando Alarma listo ✅");
+
                             },
                           ),
                         if (alarmList.isEmpty)
@@ -70,12 +72,10 @@ class AlarmScreen extends ConsumerWidget {
                     ),
                   ),
                 ),
-
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                   child: StartSleepButton(),
                 ),
-
               ],
             ),
           ),
