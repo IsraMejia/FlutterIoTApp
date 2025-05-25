@@ -65,8 +65,8 @@ class _AlertDialogSetAlarmState extends ConsumerState<AlertDialogSetAlarm> {
 
 
                       try {
-                        // 1. Guardar localmente
-                        ref.read(alarmListProvider.notifier).addAlarm(formatted);
+                        // 1. Guardar localmente 
+                        await ref.read(alarmListProvider.notifier).addAlarmFromServer(formatted);
                         logger.d("Se guardo la localmente la alarma $formatted");
                         // 2. Hacer POST al backend
                         final configurarAlarma = ref.read(configurarAlarmaUseCaseProvider);

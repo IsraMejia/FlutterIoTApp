@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iot_isra_app/features/alarm/domain/models/alarm_model.dart';
+import 'package:iot_isra_app/features/alarm/domain/use_cases/configurar_alarma_usecase.dart';
 import 'package:iot_isra_app/features/alarm/domain/use_cases/desactivar_alarma_usecase.dart';
 import 'package:iot_isra_app/features/alarm/domain/use_cases/get_alarmas_usecase.dart';
 import 'package:iot_isra_app/features/alarm/presentation/providers/set_alarm_providers.dart';
@@ -35,9 +36,16 @@ final alarmListProvider = StateNotifierProvider<AlarmListNotifier, List<AlarmMod
   (ref) {
     final getUseCase = ref.watch(getAlarmasUseCaseProvider);
     final desactivarUseCase = ref.watch(desactivarAlarmaUseCaseProvider);
-    return AlarmListNotifier(getUseCase, desactivarUseCase);
+    final configurarUseCase = ref.watch(configurarAlarmaUseCaseProvider); // 👈 nuevo
+
+    return AlarmListNotifier(
+      getUseCase,
+      desactivarUseCase,
+      configurarUseCase, // 👈 pásalo
+    );
   },
 );
+
 
 
 
@@ -46,13 +54,15 @@ class AlarmListNotifier extends StateNotifier<List<AlarmModel>> {
   AlarmListNotifier(
     this._getAlarmasUseCase,
     this._desactivarAlarmaUseCase,
+    this._configurarAlarmaUseCase, // 👈 nuevo
   ) : super([]) {
     cargarAlarmas();
   }
 
   final GetAlarmasUseCase _getAlarmasUseCase;
   final DesactivarAlarmaUseCase _desactivarAlarmaUseCase;
-  final _uuid = const Uuid();
+  final ConfigurarAlarmaUseCase _configurarAlarmaUseCase; // 👈 nuevo
+
 
   Future<void> cargarAlarmas() async {
     try {
@@ -63,17 +73,20 @@ class AlarmListNotifier extends StateNotifier<List<AlarmModel>> {
       logger.e("Error al cargar alarmas $e");
       }
   }
+   
 
-  void addAlarm(String formattedTime) {
-    final newAlarm = AlarmModel(
-      id: _uuid.v4().hashCode,
-      hora: formattedTime,
-      activa: true,
-    );
-    final nuevaLista = [...state, newAlarm];
-    nuevaLista.sort((a, b) => a.hora.compareTo(b.hora));  
+
+  Future<void> addAlarmFromServer(String formattedTime) async {
+  try {
+    final alarma = await _configurarAlarmaUseCase(formattedTime);
+    final nuevaLista = [...state, alarma];
+    nuevaLista.sort((a, b) => a.hora.compareTo(b.hora));
     state = nuevaLista;
+  } catch (e) {
+    logger.e("Error al crear alarma: $e");
   }
+}
+
 
 
   Future<void> toggleAlarm(int index, bool value) async {

@@ -61,8 +61,18 @@ class _IotDeviceCardState extends ConsumerState<IotDeviceCard> {
                 await useCase(nombreAjustado, v);
                 setState(() => isOn = v);
               } catch (_) {
+                logger.d("Error en peticion a dispositivo IoT");
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Error al actualizar dispositivo')),
+                  const SnackBar(
+                    content: Text(
+                      'Error al actualizar dispositivo',
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                    backgroundColor: Color.fromARGB(36, 82, 253, 3),
+                    duration: Duration(milliseconds: 400),
+                  ),
                 );
               }
             },

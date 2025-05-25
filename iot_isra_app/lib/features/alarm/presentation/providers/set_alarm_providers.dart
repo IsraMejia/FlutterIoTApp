@@ -16,7 +16,10 @@ final dioProvider = Provider((ref) {
     // BaseOptions(baseUrl: 'http://host.docker.internal:8000')
 
     //Puerto para correrlo en el celular (misma red a la de la mac)
-    BaseOptions(baseUrl: 'http://192.168.0.85:8000')
+    BaseOptions(baseUrl: 'http://192.168.1.131:8000')
+
+    //Puerto de PC puma Lab
+      // BaseOptions(baseUrl: 'http://10.146.218.54:8000')
 
     
     );
