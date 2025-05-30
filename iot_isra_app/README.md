@@ -7,9 +7,9 @@ Aplicación móvil desarrollada en Flutter para el control de un sistema embebid
 # Licencia MIT
 
 ## 👨‍💻 Autores
-# Mejía Alba Israel Hipólito 
+ Mejía Alba Israel Hipólito 
 
-# Ruiz Gaspar José Ángel
+ Ruiz Gaspar José Ángel
 
 
 ## 🧠 Arquitectura
@@ -27,8 +27,7 @@ Se hace uso de **Riverpod** para el manejo de estado y la inyección de dependen
 La app se comunica mediante **peticiones HTTP (GET/POST)** con un servidor local desarrollado con FastAPI. Esta interacción permite:
 
 - Consultar y configurar alarmas.
-- Activar o desactivar dispositivos físicos conectados a una ESP32.
-- Consultar temperatura, humedad y duración del sueño.
+- Activar o desactivar dispositivos físicos conectados a una ESP32. 
 - Ejecutar secuencias físicas como la rutina de alarma (ventilador + buzzer + atomizador).
 
 ## 📲 Funcionalidades principales
@@ -36,7 +35,6 @@ La app se comunica mediante **peticiones HTTP (GET/POST)** con un servidor local
 - 🔔 Activación de alarmas físicas
 - 💧 Control de atomizador y bomba de agua
 - 💨 Encendido de ventilador
-- 🔓 Apertura y cierre de puerta
-- 🌡️ Consulta de sensores ambientales
+- 🔓 Apertura y cierre de puerta 
 - 💤 Visualización de informes de sueño
  
